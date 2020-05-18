@@ -1,0 +1,9 @@
+server:
+  port: 8889
+spring:
+  rabbitmq:
+    port: 5672
+    virtual-host: /pareZhang
+    username: pareZhang
+    password: wxfyyzy115
+    host: 192.168.0.10
