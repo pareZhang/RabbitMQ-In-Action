@@ -1,8 +1,14 @@
 package com.zjm.config;
 
+import com.fasterxml.jackson.databind.util.JSONPObject;
+import com.rabbitmq.client.DefaultConsumer;
 import org.springframework.amqp.core.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import javax.sql.rowset.spi.SyncResolver;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @Author pareZhang
@@ -13,6 +19,8 @@ public class RabbitTopicConfig {
     public final static String ITEM_TOPIC_EXCHANGE="item_topic_exchange";
     public final static String ITEM_QUEUE_1="item_queue_1";
     public final static String ITEM_QUEUE_2="item_queue_2";
+
+
     /**
      * 声明交换机
      */
@@ -52,5 +60,4 @@ public class RabbitTopicConfig {
     public Binding binding2(){
         return BindingBuilder.bind(topicQueue2()).to(topicExchange()).with("item.fuck.#").noargs();
     }
-
 }

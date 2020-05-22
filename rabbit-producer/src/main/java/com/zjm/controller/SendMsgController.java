@@ -1,6 +1,7 @@
 package com.zjm.controller;
 
 import com.zjm.config.RabbitTopicConfig;
+import com.zjm.service.QueueService;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,8 @@ public class SendMsgController {
      */
     @Autowired
     private RabbitTemplate rabbitTemplate;
+    @Autowired
+    private QueueService queueService;
 
     /**
      * 测试
@@ -35,4 +38,10 @@ public class SendMsgController {
         //返回消息和路由键
         return "消息发送成功！"+"\n"+"发送的消息:"+msg+"\n"+"路由键："+routingKey;
     }
+    @GetMapping("/ttlMsg")
+    public void ttlMessgae(@RequestParam String routingKey){
+       queueService.ttlMessage(routingKey);
+    }
+
+
 }
