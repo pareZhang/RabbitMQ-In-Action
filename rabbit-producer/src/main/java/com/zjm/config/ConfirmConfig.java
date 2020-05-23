@@ -11,11 +11,11 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ConfirmConfig {
     /**
-     * 创建确认交换机
+     *
      */
     @Bean
-    public Exchange confirmExchange(){
-        return new TopicExchange("confirmExchange",true,false);
+    Exchange confirmExchange(){
+        return new TopicExchange("confirm_exchange",true,false);
     }
     /**
      * 创建消息确认队列
@@ -26,6 +26,7 @@ public class ConfirmConfig {
     }
     @Bean
     Binding bind(){
-        return BindingBuilder.bind(confirmQueue()).to(confirmExchange()).with("boot.#").noargs();
+        return BindingBuilder.bind(confirmQueue()).to(confirmExchange()).with("boot.he").noargs();
     }
+
 }
