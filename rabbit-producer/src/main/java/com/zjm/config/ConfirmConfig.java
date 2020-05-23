@@ -1,8 +1,6 @@
 package com.zjm.config;
 
-import org.springframework.amqp.core.Exchange;
-import org.springframework.amqp.core.Queue;
-import org.springframework.amqp.core.TopicExchange;
+import org.springframework.amqp.core.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -25,5 +23,9 @@ public class ConfirmConfig {
     @Bean
     Queue confirmQueue(){
         return new Queue("confirm_queue",true);
+    }
+    @Bean
+    Binding bind(){
+        return BindingBuilder.bind(confirmQueue()).to(confirmExchange()).with("boot.#").noargs();
     }
 }
